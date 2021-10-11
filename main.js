@@ -2,7 +2,7 @@ Status="";
 objects=[];
 alarm = "";
 function preload() {
-alarm = loadSound("Alarm.exe.mp3");
+alarm = loadSound("Alarm.mp3");
 }
 function setup() {
     canvas = createCanvas(500,500);
@@ -33,7 +33,14 @@ function draw() {
     if(Status != "") {
         obdt.detect(video, gotit);
         for(i=0;i<objects.length;i++){
-            if(objects.length = "person") {
+            fill("blue");
+            percentenator = floor(objects[i].confidence * 100);
+            text(objects[i].label + percentenator + "%", objects[i].x, objects[i].y);
+            noFill()
+            stroke("blue");
+            rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
+
+            if(objects[i].label == "person") {
                 document.getElementById("stat").innerHTML = "Status : Baby Detected";
                 alarm.stop();
                 
@@ -42,17 +49,11 @@ function draw() {
                 alarm.play();
                 document.getElementById("stat").innerHTML = "Status : Baby NOT Detected";
             }
-            if(objects.length < 0) {
+            if(objects[i].length == 0) {
                 alarm.play();
                 document.getElementById("stat").innerHTML = "Status : Baby NOT Detected";
             }
 
-            fill("blue");
-            percentenator = floor(objects[i].confidence * 100);
-            text(objects[i].label + percentenator + "%", objects[i].x, objects[i].y);
-            noFill()
-            stroke("blue");
-            rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
         }
     }
 }
