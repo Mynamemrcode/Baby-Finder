@@ -1,5 +1,7 @@
 body {
-    background: #d9a7c7;  
 background: linear-gradient(135deg, #fffcdc, #d9a7c7); 
+}
 
+canvas {
+    background-color: #d9a7c7;
 }

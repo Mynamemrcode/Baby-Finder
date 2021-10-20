@@ -1,8 +1,8 @@
 Status="";
 objects=[];
-alarm = "";
+music = "";
 function preload() {
-alarm = loadSound("Alarm.mp3");
+music = loadSound("song.mp3");
 }
 function setup() {
     canvas = createCanvas(500,500);
@@ -29,7 +29,7 @@ function gotit(error, results) {
 }
 
 function draw() {
-    image(video, 0,0,500,500);
+    image(video,0,0,500,500);
     if(Status != "") {
         obdt.detect(video, gotit);
         for(i=0;i<objects.length;i++){
@@ -42,22 +42,24 @@ function draw() {
 
             if(objects[i].label == "person") {
                 document.getElementById("stat").innerHTML = "Status : Baby Detected";
-                alarm.stop();
+                music.stop();
                 
             }
             else {
-                alarm.play();
-                document.getElementById("stat").innerHTML = "Status : Baby NOT Detected";
-            }
-            if(objects[i].length == 0) {
-                alarm.play();
+                music.play();
                 document.getElementById("stat").innerHTML = "Status : Baby NOT Detected";
             }
 
+
+        }
+
+        if(objects.length == 0) {
+            music.play();
+            document.getElementById("stat").innerHTML = "Status : Baby NOT Detected";
         }
     }
 }
 function stopit() {
-    alarm.stop()
+    music.stop()
 }
 
