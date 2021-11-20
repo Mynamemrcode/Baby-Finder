@@ -2,7 +2,7 @@ Status="";
 objects=[];
 music = "";
 function preload() {
-music = loadSound("song.mp3");
+music = loadSound("Alarm.mp3");
 }
 function setup() {
     canvas = createCanvas(500,500);
@@ -62,4 +62,3 @@ function draw() {
 function stopit() {
     music.stop()
 }
-
